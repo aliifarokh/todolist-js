@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+    <main class="row">
+        <section class="box row">
+            <span id="time"></span>
+            <div class="info row">
+                <span id="tasks"></span>
+                <!-- <ul class="filter row">
+                    <li data-titr="all">all</li>
+                    <li data-titr="active">active</li>
+                    <li data-titr="completed">completed</li>
+                </ul> -->
+            </div>
+            <div class="form row">
+                <input type="text" placeholder="Add a new task...">
+                <button id="btn">add</button>
+                <button id="btn2">delete</button>
+            </div>
+            <div class="row" id="todo">
+                <!-- <div class="option row">
+                    <input type="checkbox">
+                    <h4>walking around</h4>
+                    <span onclick ="del(evnet)" class="material-symbols-outlined">close</span>
+                </div> -->
+            </div>
+
+        </section>
+    </main>
+</body>
+<script>
+    let f = 0
+
+    document.getElementById('btn').addEventListener('click', (e) => {
+        let content = e.target.previousElementSibling.value
+        let option = document.querySelectorAll('.option')
+
+        if (content != 0) {
+
+            let flag = 0
+            option.forEach((val) => {
+                if (val.getAttribute('data-name') == content) {
+
+                    flag++
+                }
+            })
+            
+            if (flag == 0) {
+                
+                add(content, e)
+                let x = document.querySelectorAll('#todo>div')
+                tasks(x)
+                
+            } else {
+                alert('you already wrote that')
+                e.target.previousElementSibling.focus()
+            }
+
+        } else {
+            alert('the input is empty...')
+        }
+    })
+
+    function del(e) {
+        if (
+            (confirm("Are you sure?") == true)
+        ) {
+            setTimeout(() => {
+                e.target.parentElement.remove()
+            }, 400);
+            let x = document.querySelectorAll('#todo>div')
+            tasks(x)
+        }
+
+    }
+    function add(content, e) {
+        let x = document.createElement('div')
+        x.classList.add('option', 'row')
+        x.setAttribute('data-name', content)
+        x.innerHTML = ` <input type="checkbox">
+        <h4>${content}</h4>
+        <span onclick ="del(event)" class="material-symbols-outlined">close</span>`
+        document.getElementById('todo').appendChild(x)
+        e.target.previousElementSibling.value = null
+        e.target.previousElementSibling.focus()
+
+    }
+
+
+    document.getElementById('btn2').addEventListener('click',()=>{
+        let checkbox = document.querySelectorAll('.option input')
+        checkbox.forEach((val)=>{
+            if ( val.checked == true){
+                val.parentElement.remove()
+                let x = document.querySelectorAll('#todo>div')
+                tasks(x)
+                console.log(checkbox);
+            }
+            else{
+
+            }
+        })
+    })
+
+
+
+    // let x = document.querySelectorAll('#todo input')
+    // x.forEach((x)=>{
+    //     if(x.checked == true){
+    //         x.setAttribute('data-status','completed')
+    //     }else{
+    //         x.setAttribute('data-status','active')
+    //     }
+    // })
+    // let li = document.querySelectorAll('.filter li')
+    // li.forEach((val)=>{
+    //     val.addEventListener('click',()=>{
+            
+    //         x.forEach((xc)=>{
+    //             if(xc.getAttribute('data-status') =! val.getAttribute('data-titr')){
+    //                 xc.parentElement.style.display = 'none'
+    //             }else{
+    //                 xc.parentElement.style.display = 'flex'
+    //             }
+    //         })
+    //     })
+    // })
+
+    let flag = ''
+    let flag1 = ''
+    let date = new Date()
+    let day = date.getDay()
+    let month = date.getMonth()
+    let year = date.getFullYear()
+    let no = date.getDate()
+    let time = document.getElementById('time')
+    
+    
+    function tasks(x){
+        
+        console.log(x.length);
+        document.getElementById('tasks').innerText = x.length + ' tasks'
+    }
+
+    switch (day) {
+        case 0: flag = 'Sun'; break;
+        case 1: flag = 'Mon'; break;
+        case 2: flag = 'Tue'; break;
+        case 3: flag = 'Wed'; break;
+        case 4: flag = 'Thu'; break;
+        case 5: flag = 'Fri'; break;
+        case 6: flag = 'Sat'; break;
+        default: flag = 'unknown Day';
+    }
+
+    switch (month) {
+        case 0: flag1 = 'Jan'; break;
+        case 1: flag1 = 'Feb'; break;
+        case 2: flag1 = 'Mar'; break;
+        case 3: flag1 = 'Apr'; break;
+        case 4: flag1 = 'May'; break;
+        case 5: flag1 = 'Jun'; break;
+        case 6: flag1 = 'Jul'; break;
+        case 7: flag1 = 'Aug'; break;
+        case 8: flag1 = 'Sep'; break;
+        case 9: flag1 = 'Oct'; break;
+        case 10: flag1 = 'Nov'; break;
+        case 11: flag1 = 'Dec'; break;
+        default: flag1 = 'unknown Month';
+    }
+    time.innerText = flag + ' ' + flag1 + ' ' + no + ' ' + year
+
+
+</script>
+
+</html>

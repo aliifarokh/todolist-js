@@ -1,0 +1,189 @@
+$border : #e2e4ea;
+$write : #8a9ca5;
+$bc : #7996a5;
+@font-face {
+    font-family: ali;
+    src: url(../font/josefin/JosefinSans-VariableFont_wght.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style-type: none;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body {
+    font-family: ali;
+}
+
+main {
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: rgb(215, 161, 197);
+    background: linear-gradient(90deg, rgba(215, 161, 197, 1) 9%, rgba(122, 188, 186, 1) 39%, rgba(80, 210, 156, 1) 77%, rgba(124, 255, 157, 1) 100%);
+    font-family: ali;
+
+    >.box {
+        padding: 20px;
+        width: 35%;
+        min-height: 400px;
+        background-color: white;
+        border-radius: 20px;
+        align-content: start;
+
+        >* {
+            width: 100%;
+        }
+
+        #time {
+
+            font-size: 30px;
+            font-weight: 600;
+            // border: 2px solid black;
+        }
+
+        .info {
+            width: 100%;
+            // border: 2px solid black;
+            align-items: center;
+            font-size: 17px;
+            font-weight: 600;
+            margin: 10px 0;
+
+            >#tasks {
+                width: 55%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                color: $write;
+            }
+
+            >ul {
+                width: 45%;
+                height: 100%;
+                // border: 2px solid red;
+                justify-content: space-between;
+
+                >li {
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    // border: 2px solid blue;
+                    border-radius: 10px;
+                    text-transform: capitalize;
+                    font-size: 15px;
+                    padding: 3px 7px;
+                    color: white;
+                    background-color: $bc;
+                }
+            }
+        }
+
+        >.form {
+            border-bottom: 1px solid $border;
+            align-items: center;
+            padding: 10px 0;
+            width: 100%;
+            justify-content: space-evenly;
+            >input {
+                display: flex;
+                width: 75%;
+                outline: none;
+                border: none;
+                font-size: 20px;
+                font-family: ali;
+            }
+
+            >button {
+                width: 10%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                background-color: $bc;
+                // border: 1px solid $border;
+                border: none;
+                font-family: ali;
+                border-radius: 10px;
+                color: white;
+                text-transform: capitalize;
+                cursor: pointer;
+                padding: 0 10px;
+                transition: .4s;
+                &:nth-of-type(1){
+                    margin: 0 10px 0 0;
+                }
+                &:hover{
+                    color: $bc;
+                    background-color: white;
+                }
+
+            }
+        }
+
+        #todo{
+            width: 100%;
+            >.option {
+                width: 100%;
+                padding: 10px 0;
+                // border: 2px solid black;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid $border;
+                transition: .2s;
+                &:hover{
+                    background-color: #f6fbff;
+                }
+                >* {
+                    display: flex;
+                    height: 100%;
+                    align-items: center;
+                }
+    
+                >input {
+                    width: 25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    border: 3px solid $border;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    outline: none;
+                    cursor: pointer;
+                    &:checked{
+                        background-color: rgba(39, 255, 39, 0.61);
+                    }
+                }
+    
+                >h4 {
+                    width: 80%;
+                    font-size: 17px;
+                }
+    
+                >span {
+                    width: 10%;
+                    color: red;
+                    opacity: 0;
+                    transition: .2s;
+                    &:hover{
+                        opacity: 1;
+                        cursor: pointer;
+                    }
+                }
+    
+            }
+        }
+
+    }
+}
