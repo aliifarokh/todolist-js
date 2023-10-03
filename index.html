@@ -98,19 +98,22 @@
     }
 
 
-    document.getElementById('btn2').addEventListener('click',()=>{
+document.getElementById('btn2').addEventListener('click',()=>{
         let checkbox = document.querySelectorAll('.option input')
-        checkbox.forEach((val)=>{
-            if ( val.checked == true){
+        if(confirm('are you sure?') == true){
+            checkbox.forEach((val)=>{
+            if (val.checked == true){
                 val.parentElement.remove()
                 let x = document.querySelectorAll('#todo>div')
                 tasks(x)
-                console.log(checkbox);
             }
             else{
 
             }
         })
+        }else{
+
+        }
     })
 
 
